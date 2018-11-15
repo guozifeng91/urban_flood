@@ -1,0 +1,10 @@
+portugal_shuffle_pattern: train on portugal dataset with random patches. 25% of rain pattern are used as testing data, all patches are used for training (patch irrelavent)
+seg_net_portugal: train on portugal dataset with random patches, 10% of the patches are used as testing data, all rain patterns are used for training (pattern irrelavent)
+
+seg_net_model: train on luzern dataset with random patches, 10% are testing data. 100% of hoengg are testing data as well.
+seg_net_model2: the same with seg_net_model but fix the bug in labeling
+
+seg_net_model_classif: a classification model for only one pixel
+
+seg_net_model_pad_512: similar with seg_net_model2, but the area represented by input data is larger than the output data (512x512 and 256x256), the 512x512 input data is resized to 256x256
+seg_net_model_pad_1024: similar with seg_net_model_pad_512, with input area of 1024
