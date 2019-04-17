@@ -1,0 +1,3 @@
+model_checkpoint_path: "zurich-744_512_01-79"
+all_model_checkpoint_paths: "zurich-744_512_01-39"
+all_model_checkpoint_paths: "zurich-744_512_01-79"
