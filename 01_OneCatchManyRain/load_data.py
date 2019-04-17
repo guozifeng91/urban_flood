@@ -1,7 +1,10 @@
 import numpy as np
 import gzip
 import pandas as pd
+import os
+from os.path import join
 
+import featureExtraction as fe
 # asc loading functions
 def read_ASC(file, skip_last_col=False):
     if skip_last_col:
@@ -79,3 +82,34 @@ def load_dem(dem_file):
         dem_array = dem_array[:,:-1]
     print (dem_array.shape)
     return dem_array
+
+def generate_features(dem_array):
+    '''
+    generate the necessary features from the dem
+    
+    the result will be an nd array [height, width, channel]
+    '''
+        
+    print("generating features")
+    
+    slop,curvature,cos,sin,_ = fe.feature_lin_mean(dem_array,1)
+    
+    # rescale dem_array
+    mask_indice = dem_array > 0
+    
+    vmin=dem_array[mask_indice].min()
+    vmax=dem_array[mask_indice].max()
+    
+    dem_array[mask_indice] -= vmin
+    dem_array[mask_indice] /= (vmax - vmin)
+    
+    # fill non-data areas
+    mask_indice = dem_array < 0
+    dem_array[mask_indice] = 0
+    
+    # mask
+    mask_array = np.ones_like(dem_array,dtype=np.float32)
+    mask_array[mask_indice] = -1
+    
+    # final output of dem
+    return np.transpose(np.array([dem_array,mask_array,slop,cos,sin,curvature]),[1,2,0])
