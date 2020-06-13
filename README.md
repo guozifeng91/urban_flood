@@ -1,6 +1,12 @@
 # urban_flood
 fast urban flood prediction using convolutional neural network
 
+a convolutional neural network is trained to predict the maximum water depth of a specific catchment area by the input rainfall pattern (hyetographs)
+
+the convolutional neural network merge the information of the terrain and rainfall pattern in its latent layer, and predict the corresponding water depth in the output layer
+
+the result of the entire catchment area is assembled from small patches
+
 ![](https://github.com/guozifeng91/urban_flood/blob/master/images/pipeline.jpg)
 *pipeline*
 
